@@ -25,6 +25,35 @@
         </div>
     </header>
 
+<!-- Painel de Dívida Territorial -->
+<section class="bg-black text-green-400 py-12 px-4 font-mono text-center">
+  <h2 class="text-white text-xl mb-6">
+    Relógio da Dívida de Reparação Territorial
+  </h2>
+
+  <div id="contador" class="text-3xl md:text-5xl font-bold tracking-widest">
+    R$ 0,0000000000
+  </div>
+
+  <p class="text-gray-400 text-sm mt-4">
+    Atualização contínua em tempo real
+  </p>
+</section>
+
+<div class="mt-16 text-center">
+  <h2 class="text-red-500 text-xl mb-4">
+    Relógio de Colapso Socioambiental
+  </h2>
+
+  <div id="colapso" class="text-3xl md:text-5xl font-bold text-red-400">
+    0.0000000000 %
+  </div>
+
+  <p class="text-gray-400 text-sm mt-2">
+    Proximidade estimada de ruptura sistêmica
+  </p>
+</div>
+
 <!-- Carrossel Educativo -->
 <section class="bg-gray-900 text-white py-10 px-4">
   <div class="max-w-4xl mx-auto relative">
@@ -241,3 +270,72 @@ function prevSlide() {
 
 </body>
 </html>
+
+<script>
+// ===== CONFIGURAÇÃO =====
+
+// valor inicial
+let valorBase = 85000000000.1234567890;
+
+// crescimento por segundo
+const taxaPorSegundo = 2700.1234567890;
+
+// precisão decimal
+const casas = 10;
+
+// tempo inicial
+let ultimoTempo = performance.now();
+
+// ===== COLAPSO =====
+let risco = 72.1234567890;
+const taxaRiscoPorSegundo = 0.0000023456;
+
+// ===== FORMATADOR =====
+function formatarNumero(num) {
+  let partes = num.toFixed(casas).split(".");
+
+  let inteiro = Number(partes[0]).toLocaleString('pt-BR');
+  let decimal = partes[1];
+
+  return `R$ ${inteiro},${decimal}`;
+}
+
+// ===== ATUALIZA COLAPSO =====
+function atualizarColapso(delta) {
+  risco += taxaRiscoPorSegundo * delta;
+
+  if (risco > 100) risco = 100;
+
+  const elColapso = document.getElementById("colapso");
+  if (elColapso) {
+    elColapso.innerText = risco.toFixed(10) + " %";
+  }
+}
+
+// ===== LOOP PRINCIPAL =====
+function atualizar(tempoAtual) {
+  let delta = (tempoAtual - ultimoTempo) / 1000;
+  ultimoTempo = tempoAtual;
+
+  // relógio financeiro
+  valorBase += taxaPorSegundo * delta;
+
+  const elContador = document.getElementById("contador");
+  if (elContador) {
+    elContador.innerText = formatarNumero(valorBase);
+  }
+
+  // relógio de colapso
+  atualizarColapso(delta);
+
+  // efeito visual leve (opcional)
+  if (elContador) {
+    elContador.style.opacity = 0.95 + Math.random() * 0.05;
+  }
+
+  requestAnimationFrame(atualizar);
+}
+
+// iniciar
+requestAnimationFrame(atualizar);
+</script>
