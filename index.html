@@ -25,6 +25,92 @@
         </div>
     </header>
 
+<!-- Carrossel Educativo -->
+<section class="bg-gray-900 text-white py-10 px-4">
+  <div class="max-w-4xl mx-auto relative">
+
+    <!-- Slides -->
+    <div id="carousel" class="overflow-hidden">
+      <div class="flex transition-transform duration-500" id="slides">
+
+        <!-- Slide 1 -->
+        <div class="min-w-full px-6 text-center">
+          <h3 class="text-2xl font-bold mb-4">🌫️ Ar e Respiração</h3>
+          <p class="mb-2">🔍 Observe: cheiro forte, fumaça, poeira constante</p>
+          <p class="mb-2">⚠️ Risco: doenças respiratórias, câncer</p>
+          <p class="mb-4">📢 Ação: registre fotos e denuncie na CETESB</p>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="min-w-full px-6 text-center">
+          <h3 class="text-2xl font-bold mb-4">🔊 Poluição Sonora</h3>
+          <p class="mb-2">🔍 Observe: barulho constante (indústria, tráfego)</p>
+          <p class="mb-2">⚠️ Risco: estresse, perda auditiva</p>
+          <p class="mb-4">📢 Ação: registre horários e denuncie na prefeitura</p>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="min-w-full px-6 text-center">
+          <h3 class="text-2xl font-bold mb-4">🚰 Água</h3>
+          <p class="mb-2">🔍 Observe: cheiro de cloro, cor alterada</p>
+          <p class="mb-2">⚠️ Risco: contaminação, problemas de saúde</p>
+          <p class="mb-4">📢 Ação: registre e denuncie na vigilância sanitária</p>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="min-w-full px-6 text-center">
+          <h3 class="text-2xl font-bold mb-4">🚌 Transporte</h3>
+          <p class="mb-2">🔍 Observe: superlotação, atraso constante</p>
+          <p class="mb-2">⚠️ Risco: desgaste físico e mental</p>
+          <p class="mb-4">📢 Ação: registre e denuncie na ouvidoria municipal</p>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="min-w-full px-6 text-center">
+          <h3 class="text-2xl font-bold mb-4">🏠 Moradia</h3>
+          <p class="mb-2">🔍 Observe: umidade, falta de ventilação</p>
+          <p class="mb-2">⚠️ Risco: doenças, insônia</p>
+          <p class="mb-4">📢 Ação: acione assistência social e registre denúncia</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <button onclick="prevSlide()" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white text-black px-3 py-2 rounded-full">
+      ◀
+    </button>
+
+    <button onclick="nextSlide()" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white text-black px-3 py-2 rounded-full">
+      ▶
+    </button>
+
+  </div>
+</section>
+
+<script>
+let currentSlide = 0;
+
+function showSlide(index) {
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
+
+  if (index >= totalSlides) currentSlide = 0;
+  else if (index < 0) currentSlide = totalSlides - 1;
+  else currentSlide = index;
+
+  slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+}
+
+function nextSlide() {
+  showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+  showSlide(currentSlide - 1);
+}
+</script>
+
     <!-- Canais -->
     <section id="canais" class="py-16 px-4">
         <div class="max-w-5xl mx-auto">
